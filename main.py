@@ -27,8 +27,8 @@ def draw_boxes(result):
         lbl_w, lbl_h = label_size[0] # label w and h
         lbl_w += 2* lbl_margin # add margins on both sides
         lbl_h += 2*lbl_margin
-        img = cv2.rectangle(img, (box[0], box[1]),(box[0]+lbl_w, box[1]-lbl_h),color=color,thickness=-1)
-        cv2.putText(img, label, (box[0]+ lbl_margin,box[1]-lbl_margin),fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=1.0, color=(255, 255, 255 ),thickness=1)
+        # img = cv2.rectangle(img, (box[0], box[1]),(box[0]+lbl_w, box[1]-lbl_h),color=color,thickness=-1)
+        cv2.putText(img, label, (box[0]+ lbl_margin,box[1]+lbl_margin+lbl_h),fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=1.0, color=(255, 255, 255 ),thickness=1)
     return img
 
 
