@@ -2,8 +2,8 @@
 
 ## Setup
 ```bash
-git clone ...
-cd yolo-detection
+git clone https://github.com/Luthen-EchoBot/yolo-obj-detect.git
+cd yolo-obj-detect
 python -m venv venv
 source venv/bin/activate
 pip install -U ultralytics
