@@ -12,7 +12,7 @@ pip install -U ultralytics
 
 ## Use
 ```bash
-source venv/bin/activate # skip if terminal starts with "(base)"
+source venv/bin/activate # skip if terminal starts with "(venv)"
 python categorize_terminal.py
 # use 'q' to close program
 ```
