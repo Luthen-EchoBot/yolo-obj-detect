@@ -26,3 +26,19 @@ pyenv activate venv311
 pip install --upgrade pip wheel setuptools
 ```
 
+sudo apt update
+sudo apt install -y \
+    build-essential \
+    libbz2-dev \
+    libreadline-dev \
+    libssl-dev \
+    libsqlite3-dev \
+    zlib1g-dev \
+    libffi-dev \
+    liblzma-dev \
+    libncursesw5-dev \
+    libgdbm-dev \
+    tk-dev \
+    libdb-dev \
+    uuid-dev
+
