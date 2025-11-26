@@ -25,7 +25,7 @@ pyenv virtualenv 3.11.9 venv311
 pyenv activate venv311
 pip install --upgrade pip wheel setuptools
 ```
-
+```bash
 sudo apt update
 sudo apt install -y \
     build-essential \
@@ -41,4 +41,4 @@ sudo apt install -y \
     tk-dev \
     libdb-dev \
     uuid-dev
-
+```
