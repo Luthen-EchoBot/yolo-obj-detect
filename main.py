@@ -74,4 +74,7 @@ def video():
 # ----------------------------
 if __name__ == "__main__":
     # Cámara + streaming TCP accesible desde tu red local
-    app.run(host="0.0.0.0", port=5000, debug=False, threaded=True)
+    #app.run(host="0.0.0.0", port=5000, debug=False, threaded=True)
+    app.run(host="0.0.0.0", port=5000)
+
+
