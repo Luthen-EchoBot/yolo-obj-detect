@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
-from time import time, sleep
 from ultralytics import YOLO
 from flask import Flask, Response
+from pyngrok import ngrok
 
 # ----------------------------
 # Cargar modelo YOLO
@@ -14,7 +14,7 @@ results = model.track(source="0", stream=True, persist=True, classes=[0])
 print("post track")
 
 # ----------------------------
-# Función opcional (tuya)
+# Función opcional para dibujar cajas
 # ----------------------------
 def draw_boxes(result):
     img = result.orig_img
@@ -36,8 +36,6 @@ def draw_boxes(result):
         lbl_w, lbl_h = label_size[0]
         lbl_w += 2 * lbl_margin
         lbl_h += 2 * lbl_margin
-        print(label)
-        print(score)
         cv2.putText(img, label,
                     (box[0] + lbl_margin, box[1] + lbl_margin + lbl_h),
                     fontFace=cv2.FONT_HERSHEY_SIMPLEX,
@@ -49,16 +47,16 @@ def draw_boxes(result):
 # ----------------------------
 app = Flask(__name__)
 
+# Abrir túnel ngrok
+public_url = ngrok.connect(5000)
+print(f"Tu streaming es accesible en: {public_url}/video")
+
 def generate_stream():
     for result in results:
-        print("preplot")
-        img = result.plot()   # Puedes usar draw_boxes(result) si prefieres
-        print("encode")
-
+        img = result.plot()  # O draw_boxes(result) si prefieres
         ret, jpeg = cv2.imencode('.jpg', img)
         if not ret:
             continue
-
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' +
                jpeg.tobytes() +
@@ -69,12 +67,13 @@ def video():
     return Response(generate_stream(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
+# Página principal
+@app.route('/')
+def index():
+    return f'<h1>Streaming YOLO</h1><p>Abre <a href="/video">/video</a> para ver el streaming.</p>'
+
 # ----------------------------
 # Main
 # ----------------------------
 if __name__ == "__main__":
-    # Cámara + streaming TCP accesible desde tu red local
-    #app.run(host="0.0.0.0", port=5000, debug=False, threaded=True)
     app.run(host="0.0.0.0", port=5000)
-
-
