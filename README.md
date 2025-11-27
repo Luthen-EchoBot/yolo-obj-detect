@@ -24,7 +24,7 @@ python categorize_terminal.py
 ```bash
 git clone https://github.com/Luthen-EchoBot/yolo-obj-detect.git
 cd yolo-obj-detect
-pyenv virtualenv 3.11.9 venv311
+pyenv install 3.10.14
 pyenv shell 3.10.14
 python -m venv venv
 source venv/bin/activate
