@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 from flask import Flask, Response
-from pyngrok import ngrok
 
 # ----------------------------
 # Cargar modelo YOLO
@@ -47,10 +46,6 @@ def draw_boxes(result):
 # ----------------------------
 app = Flask(__name__)
 
-# Abrir túnel ngrok
-public_url = ngrok.connect(5000)
-print(f"Tu streaming es accesible en: {public_url}/video")
-
 def generate_stream():
     for result in results:
         img = result.plot()  # O draw_boxes(result) si prefieres
@@ -76,4 +71,5 @@ def index():
 # Main
 # ----------------------------
 if __name__ == "__main__":
+    # Escucha en todas las interfaces, útil para túnel SSH o red local
     app.run(host="0.0.0.0", port=5000)
