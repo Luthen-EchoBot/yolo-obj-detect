@@ -1,6 +1,6 @@
 # Purpose
 
-This repository was used to test the YOLO AI solution for object detections
+This repository was used to test the YOLO AI solution for object detection
 
 ## Setup
 ```bash
